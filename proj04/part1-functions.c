@@ -16,9 +16,12 @@
  *         0 otherwise
  */
 int divide(int a, int b) {
-    UNUSED(a);
-    UNUSED(b);
-    return 0;
+
+    if (b == 0) {
+        return b;
+    } else {
+        return a/b;
+    }
 }
 
 /** toLowercase
@@ -30,7 +33,8 @@ int divide(int a, int b) {
  * @param "str" a NULL-terminated string to be converted to lowercase
  */
 void toLowercase(char *str) {
-    UNUSED(str);
+    for(char *p = str; *p; ++p)
+        *p = *p > 0x40 && *p < 0x5b ? *p | 0x60 : *p;
 }
 
 /** gcd
