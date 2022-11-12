@@ -1,7 +1,7 @@
 #include "part1-functions.h"
 
 /*
- * Name: YOUR NAME HERE
+ * Name: Yongqi Ma
  * Collaborators:
  * Please list anyone you collaborated with on this file here.
  */
@@ -25,7 +25,7 @@ int divide(int a, int b) {
 }
 
 /** toLowercase
- * 
+ *
  * Converts a string in-place to lowercase.
  * In-place means that the inputted string will be modified itself.
  * You will NOT create a new string.
@@ -34,7 +34,7 @@ int divide(int a, int b) {
  */
 void toLowercase(char *str) {
     for(char *p = str; *p; ++p)
-        *p = *p > 0x40 && *p < 0x5b ? *p | 0x60 : *p;
+        *p = *p > 64 && *p < 91 ? *p | 0x60 : *p;
 }
 
 /** gcd
@@ -47,13 +47,17 @@ void toLowercase(char *str) {
  * @return the greatest common divisor of a and b.
  */
 int gcd(int a, int b) {
-    UNUSED(a);
-    UNUSED(b);
-    return 0;
+    int temp;
+    while (b != 0) {
+        temp = a % b;
+        a = b;
+        b = temp;
+    }
+    return a < 0 ? -a : a;
 }
 
 /** fib
- * 
+ *
  * Computes the nth integer in the Fibonnacci sequence.
  * The Fibonacci sequence begins with F(0) = 0, F(1) = 1.
  * Successive elements are the sum of the previous two elements in the sequence.
@@ -62,18 +66,25 @@ int gcd(int a, int b) {
  * @return the nth Fibonacci number.
  */
 int fib(int n) {
-    UNUSED(n);
-    return 0;
+    if (n <= 1)
+        return n;
+    return fib(n - 1) + fib(n - 2);
 }
 
 /** countOnes
- * 
+ *
  * Counts the number of bits set in the 2's complement binary representation of an integer.
  *
  * @param "num" the number whose bits are to be counted.
  * @return the number of bits set in num.
  */
 int countOnes(int num) {
-    UNUSED(num);
-    return 0;
+    int count = num < 0 ? 1 : 0;
+    num &= 0x7fffffff;
+
+    while (num) {
+        count += num & 1;
+        num >>= 1;
+    }
+    return count;
 }
